@@ -31,8 +31,13 @@ const SingleProduct = ({
   }
 
   const handleApprove = (id, status) => {
-    dispatch(handleProductStatus({ id, status }))
-    toast.success(`Product with id "${id}" marked as approved`)
+    if (isOrderApproved) {
+      toast.error('Cannot update status as the order is approved.')
+      return
+    } else {
+      dispatch(handleProductStatus({ id, status }))
+      toast.success(`Product with id "${id}" marked as approved`)
+    }
   }
 
   let combinationStatus = 'Price and Quantity updated'
@@ -87,8 +92,13 @@ const SingleProduct = ({
             type='button'
             className='edit-btn'
             onClick={() => {
-              dispatch(handleEditModalData({ id }))
-              dispatch(openDetailedEditProductModal())
+              if (isOrderApproved) {
+                toast.error('Cannot update status as the order is approved.')
+                return
+              } else {
+                dispatch(handleEditModalData({ id }))
+                dispatch(openDetailedEditProductModal())
+              }
             }}
           >
             Edit
