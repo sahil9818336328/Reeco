@@ -32,7 +32,7 @@ const StyledAllOrdersWrapper = styled.section`
         .single-product {
           border-bottom: 2px solid var(--grey-300);
           display: grid;
-          grid-template-columns: 2fr 1fr 1fr 1fr 1fr 340px;
+          grid-template-columns: 2fr 1fr 1fr 1fr 1fr 2fr;
           padding-left: 3rem;
           gap: 1.8rem;
 
@@ -66,10 +66,12 @@ const StyledAllOrdersWrapper = styled.section`
               display: inline-block;
               text-transform: capitalize;
               margin-right: auto;
-              margin-left: 1.5rem;
+              margin-left: 1rem;
               padding: 0.5rem 1rem;
               border-radius: var(--border-radius);
               color: var(--white);
+              word-wrap: break-word;
+              max-width: 180px;
             }
 
             .check {
