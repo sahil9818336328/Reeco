@@ -3,6 +3,7 @@ import { VscClose } from 'react-icons/vsc'
 import { useDispatch, useSelector } from 'react-redux'
 import { closeMissingUrgentModal } from '../../redux/features/modals/modalSlice'
 import { handleProductStatus } from '../../redux/features/product/productSlice'
+import { toast } from 'react-toastify'
 
 const MissingUrgent = () => {
   const {
@@ -66,6 +67,9 @@ const MissingUrgent = () => {
                       status: 'missing',
                     })
                   )
+                  toast.success(
+                    `Product with id ${isMissingUrgentProductId} marked as Missing`
+                  )
                   dispatch(closeMissingUrgentModal())
                 }}
               >
@@ -80,6 +84,9 @@ const MissingUrgent = () => {
                       id: isMissingUrgentProductId,
                       status: 'Missing - Urgent',
                     })
+                  )
+                  toast.success(
+                    `Product with id ${isMissingUrgentProductId} marked as Missing - Urgent`
                   )
                   dispatch(closeMissingUrgentModal())
                 }}

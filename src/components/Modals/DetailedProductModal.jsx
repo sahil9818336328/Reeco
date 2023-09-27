@@ -89,7 +89,7 @@ const DetailedProductModal = () => {
                 <span className='label'>Price ($)</span>{' '}
                 <input
                   type='text'
-                  defaultValue={detailedProductPrice}
+                  value={detailedProductPrice}
                   className='modal-input'
                   onChange={(e) => {
                     dispatch(handleFieldName(`${e.target.name} updated`))
@@ -114,7 +114,7 @@ const DetailedProductModal = () => {
                   />
                   <input
                     type='text'
-                    defaultValue={detailedProductQuantity}
+                    value={detailedProductQuantity}
                     className='modal-input'
                     name='quantity'
                   />
