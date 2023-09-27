@@ -40,6 +40,8 @@ const DetailedProductModal = () => {
     reason: reasonText,
   } = isMissingUrgentProductId && missingProduct
 
+  console.log(reasonText)
+
   useEffect(() => {
     dispatch(getProductInfo({ price, quantity }))
   }, [isMissingUrgentProductId])
@@ -47,10 +49,16 @@ const DetailedProductModal = () => {
   let total = detailedProductPrice * detailedProductQuantity
 
   const handleClick = () => {
+    if (!getFieldName.length) {
+      toast.error('Please update values and choose a different reason.')
+      return
+    }
+
     if (!reason.value) {
       toast.error('Please choose a reason.')
       return
     }
+
     dispatch(handleDataSubmission())
     dispatch(closeDetailedEditProductModal())
     setReason({ ...reason, value: '', index: null })
@@ -152,7 +160,11 @@ const DetailedProductModal = () => {
                         )
                         return
                       } else {
-                        setReason({ ...reason, value: text, index: id })
+                        setReason({
+                          ...reason,
+                          value: text,
+                          index: id,
+                        })
                         dispatch(
                           handleEditReason({
                             id: isMissingUrgentProductId,

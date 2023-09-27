@@ -75,7 +75,13 @@ const SingleProduct = ({
           </span>
 
           <BsCheck2
-            className={`${status === 'approved' ? 'check' : ''}`}
+            className={`${
+              status === 'approved' ||
+              status == 'price updated' ||
+              status === 'quantity updated'
+                ? 'check'
+                : ''
+            }`}
             onClick={() => handleApprove(id, 'approved')}
           />
           <VscClose
