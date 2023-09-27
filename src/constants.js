@@ -9,7 +9,7 @@ import {
   GiChipsBag,
   GiChocolateBar,
 } from 'react-icons/gi'
-import avocadoHass from './assets/avocado Hass.jpg'
+import avocadoHass from './assets/avocado.jpg'
 import Blueberries from './assets/blueberries.webp'
 import butter from './assets/butter.webp'
 import kale from './assets/kale.webp'
