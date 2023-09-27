@@ -40,8 +40,6 @@ const DetailedProductModal = () => {
     reason: reasonText,
   } = isMissingUrgentProductId && missingProduct
 
-  console.log(reasonText)
-
   useEffect(() => {
     dispatch(getProductInfo({ price, quantity }))
   }, [isMissingUrgentProductId])
