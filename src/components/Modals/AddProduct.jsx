@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { nanoid } from 'nanoid'
 import { addItemToList } from '../../redux/features/product/productSlice'
 import { closeAddProductModal } from '../../redux/features/modals/modalSlice'
+import { toast } from 'react-toastify'
 
 const AddProduct = () => {
   const { isAddProductModalOpen } = useSelector((store) => store.modal)
@@ -35,6 +36,7 @@ const AddProduct = () => {
       })
     )
     dispatch(closeAddProductModal())
+    toast.success('Item added successfully.')
   }
 
   return (
