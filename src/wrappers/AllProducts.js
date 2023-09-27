@@ -29,7 +29,7 @@ const StyledAllOrdersWrapper = styled.section`
       }
 
       .products-data {
-        .single-order {
+        .single-product {
           border-bottom: 2px solid var(--grey-300);
           display: grid;
           grid-template-columns: 2fr 1fr 1fr 1fr 1fr 2fr;
@@ -50,7 +50,51 @@ const StyledAllOrdersWrapper = styled.section`
             padding-right: 1rem;
             background-color: #f9f9f9;
 
+            .approved {
+              background-color: #3dca72;
+            }
+
+            .missing {
+              background-color: #f66d44;
+            }
+
+            .missing-urgent {
+              background-color: #db2114;
+            }
+
+            .status {
+              display: inline-block;
+              text-transform: capitalize;
+              margin-right: auto;
+              margin-left: 1.5rem;
+              padding: 0.5rem 1rem;
+              border-radius: var(--border-radius);
+              color: var(--white);
+            }
+
+            .check {
+              color: #3dca72;
+              stroke-width: 1.3;
+            }
+
+            .cross {
+              stroke-width: 1.2;
+              color: #f66d44;
+            }
+
+            .urgent-cross {
+              stroke-width: 1.2;
+              color: #db2114;
+            }
+
+            .edit-btn {
+              background-color: transparent;
+              border: none;
+              cursor: pointer;
+              color: var(--grey-500);
+            }
             svg {
+              cursor: pointer;
               font-size: 1.5rem;
             }
           }

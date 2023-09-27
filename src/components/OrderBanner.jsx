@@ -1,7 +1,17 @@
+import { useDispatch, useSelector } from 'react-redux'
 import Wrapper from '../wrappers/OrderBanner.styled'
 import { BsChevronRight } from 'react-icons/bs'
+import { approveOrder } from '../redux/features/product/productSlice'
+import { toast } from 'react-toastify'
 
 const OrderBanner = () => {
+  const { isOrderApproved } = useSelector((store) => store.product)
+  const dispatch = useDispatch()
+
+  const handleOrderApproval = () => {
+    dispatch(approveOrder())
+    toast.success('Order approved successfully.')
+  }
   return (
     <Wrapper>
       <div className='container'>
@@ -17,8 +27,12 @@ const OrderBanner = () => {
             <button type='button' className='btn'>
               Back
             </button>
-            <button type='button' className='btn approve'>
-              Approve order
+            <button
+              type='button'
+              className='btn approve'
+              onClick={handleOrderApproval}
+            >
+              {isOrderApproved ? 'Order approved' : 'Approve order'}
             </button>
           </div>
         </div>

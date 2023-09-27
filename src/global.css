@@ -228,3 +228,66 @@ button:disabled {
   max-width: var(--max-width);
   margin: 0 auto;
 }
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 1;
+}
+
+/* MODAL STYLES */
+/* FOR FRAMER MOTION TO WORK PROPERLY SHIFTED CODE HERE */
+.modal-content {
+  gap: 1rem;
+  background-color: var(--white);
+  max-width: fit-content;
+  padding: 2rem 1rem;
+  border-radius: 0.3rem;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+.small {
+  max-width: 400px;
+}
+
+.modal-content .confirmation-btn {
+  align-self: flex-end;
+}
+
+.modal-content .confirmation-btn .confirm {
+  background-color: transparent;
+  border: none;
+  margin-right: 2rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.modal-content .modal-description {
+  color: var(--grey-500);
+  margin-bottom: 1.5rem;
+  width: fit-content;
+}
+
+.modal-content .modal-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.modal-content .modal-title span {
+  text-transform: capitalize;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.modal-content .modal-title .icon-close {
+  cursor: pointer;
+  font-size: 1.3rem;
+}

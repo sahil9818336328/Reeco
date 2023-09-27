@@ -1,8 +1,10 @@
 import Wrapper from '../wrappers/Navbar.styled'
 import { TfiShoppingCart } from 'react-icons/tfi'
 import { FiChevronDown } from 'react-icons/fi'
+import { useSelector } from 'react-redux'
 
 const Navbar = () => {
+  const { amount } = useSelector((store) => store.product)
   return (
     <Wrapper>
       <div className='container'>
@@ -17,7 +19,7 @@ const Navbar = () => {
           </div>
           <div className='navbar-section-right'>
             <div className='cart'>
-              <span className='total-items'>0</span>
+              <span className='total-items'>{amount}</span>
               <TfiShoppingCart className='cart-icon' />
             </div>
             <div className='user'>

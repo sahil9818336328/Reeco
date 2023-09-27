@@ -9,6 +9,12 @@ import {
   GiChipsBag,
   GiChocolateBar,
 } from 'react-icons/gi'
+import avocadoHass from './assets/avocado Hass.jpg'
+import Blueberries from './assets/blueberries.webp'
+import butter from './assets/butter.webp'
+import kale from './assets/kale.webp'
+import pasta from './assets/pasta.webp'
+import steak from './assets/steak.webp'
 
 export const orderInformationData = [
   {
@@ -81,48 +87,73 @@ export const ProductsData = [
     id: nanoid(),
     productName: 'Organic Hass Avocado',
     brand: 'Green Fields Organic',
-    price: 2.99,
+    price: 399.99,
     quantity: 3,
-    total: 8.97,
+    image: avocadoHass,
+    status: '',
   },
   {
     id: nanoid(),
     productName: 'Whole Wheat Penne Rigate Pasta',
     brand: "Nature's Harvest",
-    price: 3.49,
+    price: 499.99,
     quantity: 2,
-    total: 6.98,
+    image: pasta,
+    status: '',
   },
   {
     id: nanoid(),
     productName: 'Grass-Fed Ribeye Steak',
     brand: 'Premium Cuts',
-    price: 11.99,
+    price: 799.99,
     quantity: 1,
-    total: 11.99,
+    image: steak,
+    status: '',
   },
   {
     id: nanoid(),
     productName: 'Organic Wild Blueberries',
     brand: 'Berry Bliss Organics',
-    price: 4.99,
+    price: 299.99,
     quantity: 2,
-    total: 9.98,
+    image: Blueberries,
+    status: '',
   },
   {
     id: nanoid(),
     productName: 'Creamy Almond Butter',
     brand: 'Nutty Delights',
-    price: 6.99,
+    price: 450,
     quantity: 1,
-    total: 6.99,
+    image: butter,
+    status: '',
   },
   {
     id: nanoid(),
     productName: 'Fresh Organic Kale Bunch',
     brand: 'Green Valley Farms Organic',
-    price: 2.49,
+    price: 680,
     quantity: 4,
-    total: 9.96,
+    image: kale,
+    status: '',
+  },
+]
+
+export const reasonList = [
+  {
+    id: 0,
+    text: 'Missing product',
+  },
+  {
+    id: 1,
+    text: 'Quantity is not the same',
+  },
+  {
+    id: 2,
+    text: 'Price is not the same',
+  },
+  {
+    id: 3,
+    text: 'Other',
   },
 ]
