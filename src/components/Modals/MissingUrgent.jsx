@@ -1,14 +1,15 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { VscClose } from 'react-icons/vsc'
 import { useDispatch, useSelector } from 'react-redux'
-import {
-  closeMissingUrgentModal,
-  openDetailedEditProductModal,
-} from '../../redux/features/modals/modalSlice'
+import { closeMissingUrgentModal } from '../../redux/features/modals/modalSlice'
+import { handleProductStatus } from '../../redux/features/product/productSlice'
 
 const MissingUrgent = () => {
-  const { productMissingUrgentDescription, isMissingUrgentModalOpen } =
-    useSelector((store) => store.modal)
+  const {
+    productMissingUrgentDescription,
+    isMissingUrgentModalOpen,
+    isMissingUrgentProductId,
+  } = useSelector((store) => store.modal)
 
   const dispatch = useDispatch()
 
@@ -58,14 +59,30 @@ const MissingUrgent = () => {
               <button
                 type='button'
                 className='confirm'
-                onClick={() => dispatch(closeMissingUrgentModal())}
+                onClick={() => {
+                  dispatch(
+                    handleProductStatus({
+                      id: isMissingUrgentProductId,
+                      status: 'missing',
+                    })
+                  )
+                  dispatch(closeMissingUrgentModal())
+                }}
               >
                 No
               </button>
               <button
                 type='button'
                 className='confirm'
-                onClick={() => dispatch(openDetailedEditProductModal())}
+                onClick={() => {
+                  dispatch(
+                    handleProductStatus({
+                      id: isMissingUrgentProductId,
+                      status: 'Missing - Urgent',
+                    })
+                  )
+                  dispatch(closeMissingUrgentModal())
+                }}
               >
                 Yes
               </button>

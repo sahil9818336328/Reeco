@@ -158,8 +158,8 @@ button:disabled {
 .form {
   width: 90vw;
   max-width: var(--fixed-width);
-  background: var(--background-secondary-color);
-  border-radius: var(--border-radius);
+  background: var(--white);
+  border-radius: 1rem;
   box-shadow: var(--shadow-2);
   padding: 2rem 2.5rem;
   margin-top: 1rem;

@@ -8,11 +8,13 @@ import {
   decrementProductQuantity,
   getProductInfo,
   handleDataSubmission,
+  handleFieldName,
   handlePriceChange,
   incrementProductQuantity,
 } from '../../redux/features/modals/modalSlice'
 import { toast } from 'react-toastify'
 import { reasonList } from '../../constants'
+import { handleEditReason } from '../../redux/features/product/productSlice'
 
 const DetailedProductModal = () => {
   const [reason, setReason] = useState({ value: '', index: null })
@@ -22,14 +24,21 @@ const DetailedProductModal = () => {
     isMissingUrgentProductId,
     detailedProductPrice,
     detailedProductQuantity,
+    getFieldName,
   } = useSelector((store) => store.modal)
   const { products } = useSelector((store) => store.product)
 
   const missingProduct = products.find(
     (product) => product.id === isMissingUrgentProductId
   )
-  const { productName, brand, price, quantity, image } =
-    isMissingUrgentProductId && missingProduct
+  const {
+    productName,
+    brand,
+    price,
+    quantity,
+    image,
+    reason: reasonText,
+  } = isMissingUrgentProductId && missingProduct
 
   useEffect(() => {
     dispatch(getProductInfo({ price, quantity }))
@@ -38,8 +47,27 @@ const DetailedProductModal = () => {
   let total = detailedProductPrice * detailedProductQuantity
 
   const handleClick = () => {
-    dispatch(closeDetailedEditProductModal())
+    if (!reason.value) {
+      toast.error('Please choose a reason.')
+      return
+    }
     dispatch(handleDataSubmission())
+    dispatch(closeDetailedEditProductModal())
+    setReason({ ...reason, value: '', index: null })
+  }
+
+  function validateInput(inputStr) {
+    var pattern = /^\d+(\.\d+)?$/
+
+    return pattern.test(inputStr)
+  }
+
+  const validateRegex = (input) => {
+    if (validateInput(input.target.value)) {
+      dispatch(handlePriceChange(input.target.value))
+    } else {
+      toast.warning('Please enter valid number.')
+    }
   }
 
   return (
@@ -61,9 +89,13 @@ const DetailedProductModal = () => {
                 <span className='label'>Price ($)</span>{' '}
                 <input
                   type='text'
-                  value={detailedProductPrice}
+                  defaultValue={detailedProductPrice}
                   className='modal-input'
-                  onChange={(e) => dispatch(handlePriceChange(e.target.value))}
+                  onChange={(e) => {
+                    dispatch(handleFieldName(`${e.target.name} updated`))
+                    validateRegex(e)
+                  }}
+                  name='price'
                 />
               </div>
               <div className='single-row'>
@@ -71,21 +103,26 @@ const DetailedProductModal = () => {
                 <div className='update-values'>
                   <AiOutlineMinus
                     onClick={() => {
-                      if (detailedProductQuantity === 1) {
-                        toast.warning('Quantity cannot be less than 1.')
+                      if (detailedProductQuantity === 0) {
+                        toast.warning('Quantity cannot be less than 0.')
                         return
                       }
 
+                      dispatch(handleFieldName('quantity updated'))
                       dispatch(decrementProductQuantity())
                     }}
                   />
                   <input
                     type='text'
-                    value={detailedProductQuantity}
+                    defaultValue={detailedProductQuantity}
                     className='modal-input'
+                    name='quantity'
                   />
                   <AiOutlinePlus
-                    onClick={() => dispatch(incrementProductQuantity())}
+                    onClick={() => {
+                      dispatch(handleFieldName('quantity updated'))
+                      dispatch(incrementProductQuantity())
+                    }}
                   />
                 </div>
               </div>
@@ -106,11 +143,24 @@ const DetailedProductModal = () => {
                   <span
                     key={id}
                     className={`single-option ${
-                      i === reason.index && 'active'
+                      (text === reasonText || i === reason.index) && 'active'
                     }`}
-                    onClick={() =>
-                      setReason({ ...reason, value: text, index: id })
-                    }
+                    onClick={() => {
+                      if (!getFieldName.length) {
+                        toast.error(
+                          'Please update values in order to choose a reason.'
+                        )
+                        return
+                      } else {
+                        setReason({ ...reason, value: text, index: id })
+                        dispatch(
+                          handleEditReason({
+                            id: isMissingUrgentProductId,
+                            reason: text,
+                          })
+                        )
+                      }
+                    }}
                   >
                     {text}
                   </span>
@@ -128,9 +178,9 @@ const DetailedProductModal = () => {
 
               <button
                 type='button'
-                className={`footer-btn send ${!reason.value && 'disabled'}`}
-                disabled={!reason.value}
-                title={!reason.value && 'Please choose a reason to proceed'}
+                className={`footer-btn send ${
+                  !reason.value && reasonText === '' && 'disabled'
+                }`}
                 onClick={handleClick}
               >
                 Send

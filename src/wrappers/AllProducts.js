@@ -32,9 +32,9 @@ const StyledAllOrdersWrapper = styled.section`
         .single-product {
           border-bottom: 2px solid var(--grey-300);
           display: grid;
-          grid-template-columns: 2fr 1fr 1fr 1fr 1fr 2fr;
+          grid-template-columns: 2fr 1fr 1fr 1fr 1fr 340px;
           padding-left: 3rem;
-          gap: 2rem;
+          gap: 1.8rem;
 
           span {
             display: flex;

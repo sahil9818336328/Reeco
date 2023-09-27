@@ -8,6 +8,8 @@ const initialState = {
   detailedProductPrice: 0,
   detailedProductQuantity: 0,
   isDataSubmitted: false,
+  getFieldName: [],
+  isAddProductModalOpen: false,
 }
 
 const modalSlice = createSlice({
@@ -48,8 +50,21 @@ const modalSlice = createSlice({
     handleCloseSubmission: (state) => {
       state.isDataSubmitted = false
     },
-    removeItemId: (state) => {
-      state.isMissingUrgentProductId = null
+    handleEditModalData: (state, { payload }) => {
+      state.isMissingUrgentProductId = payload.id
+    },
+    handleFieldName: (state, { payload }) => {
+      let fieldNames = [...new Set([...state.getFieldName, payload])]
+      state.getFieldName = fieldNames
+    },
+    openAddProductModal: (state) => {
+      state.isAddProductModalOpen = true
+    },
+    closeAddProductModal: (state) => {
+      state.isAddProductModalOpen = false
+    },
+    resetValues: (state) => {
+      state.getFieldName = []
     },
   },
 })
@@ -65,7 +80,11 @@ export const {
   handlePriceChange,
   handleDataSubmission,
   handleCloseSubmission,
-  removeItemId,
+  handleEditModalData,
+  handleFieldName,
+  openAddProductModal,
+  closeAddProductModal,
+  resetValues,
 } = modalSlice.actions
 
 export default modalSlice.reducer

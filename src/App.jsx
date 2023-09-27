@@ -1,7 +1,10 @@
 import { useEffect } from 'react'
 import { Navbar, OrderBanner } from './components'
 import Products from './components/Products'
-import { calculateTotals } from './redux/features/product/productSlice'
+import {
+  calculateTotals,
+  // getProducts,
+} from './redux/features/product/productSlice'
 import { useDispatch, useSelector } from 'react-redux'
 
 function App() {
@@ -14,6 +17,11 @@ function App() {
   useEffect(() => {
     dispatch(calculateTotals())
   }, [products, detailedProductPrice, detailedProductQuantity])
+
+  // useEffect(() => {
+  //   dispatch(getProducts())
+  // }, [])
+
   return (
     <>
       <Navbar />

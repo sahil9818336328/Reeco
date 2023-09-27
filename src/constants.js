@@ -91,6 +91,7 @@ export const ProductsData = [
     quantity: 3,
     image: avocadoHass,
     status: '',
+    reason: '',
   },
   {
     id: nanoid(),
@@ -100,6 +101,7 @@ export const ProductsData = [
     quantity: 2,
     image: pasta,
     status: '',
+    reason: '',
   },
   {
     id: nanoid(),
@@ -109,6 +111,7 @@ export const ProductsData = [
     quantity: 1,
     image: steak,
     status: '',
+    reason: '',
   },
   {
     id: nanoid(),
@@ -118,6 +121,7 @@ export const ProductsData = [
     quantity: 2,
     image: Blueberries,
     status: '',
+    reason: '',
   },
   {
     id: nanoid(),
@@ -127,6 +131,7 @@ export const ProductsData = [
     quantity: 1,
     image: butter,
     status: '',
+    reason: '',
   },
   {
     id: nanoid(),
@@ -136,6 +141,7 @@ export const ProductsData = [
     quantity: 4,
     image: kale,
     status: '',
+    reason: '',
   },
 ]
 

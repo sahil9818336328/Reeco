@@ -156,7 +156,6 @@ const StyledDetailedModalWrapper = styled.div`
 
         .disabled {
           background-color: var(--primary-200);
-          cursor: not-allowed;
         }
       }
     }
