@@ -47,13 +47,14 @@ const DetailedProductModal = () => {
   let total = detailedProductPrice * detailedProductQuantity
 
   const handleClick = () => {
-    if (!getFieldName.length) {
-      toast.error('Please update values and choose a different reason.')
+    const alreadyExists = reasonList.find((reason) => reason.text == reasonText)
+    if (alreadyExists && !getFieldName.length) {
+      dispatch(closeDetailedEditProductModal())
       return
     }
 
     if (!reason.value) {
-      toast.error('Please choose a reason.')
+      toast.error('Please update values and choose a reason.')
       return
     }
 
